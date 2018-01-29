@@ -8,6 +8,7 @@ describe('server-tools', function () {
       return findOpenPortNumbers(3)
         .then((ports) => {
           ports.should.have.lengthOf(3);
+          ports.should.not.include(0);
         });
     });
   });
