@@ -1,6 +1,7 @@
 const chai = require('chai');
 const should = chai.should();
 const {createGateway, createGatewayConfig} = require('../gateway-tools');
+const getBackendServer = require('../server-tools').getBackendServer;
 const request = require('supertest');
 
 describe('gateway-tools', function () {
@@ -18,7 +19,7 @@ describe('gateway-tools', function () {
   });
 
   describe('createGateway()', function () {
-    it('should create a running gateway that can respond to requests', function () {
+    it('should create a running gateway with default config that can respond to requests', function () {
       let app;
       return createGateway()
         .then((gw) => {
@@ -27,6 +28,37 @@ describe('gateway-tools', function () {
             .get('/ip')
             .expect(200);
         }).then(() => app.close());
+    });
+
+    it('should create a running gateway with custom config and backend that can respond to requests', function () {
+      let gwConfig = createGatewayConfig();
+      let gwApp;
+      let backendApp;
+
+      let customBackendCalled = false;
+
+      let handler = (req, res) => {
+        customBackendCalled = true;
+        res.sendStatus(200);
+      };
+
+      return getBackendServer(0, handler)
+        .then((backend) => {
+          backendApp = backend.app;
+          gwConfig.serviceEndpoints.backend.url = `http://localhost:${backend.port}`;
+          return createGateway(gwConfig)
+        })
+        .then((gw) => {
+          gwApp = gw.app;
+          return request(gwApp)
+            .get('/ip')
+            .expect(200)
+        })
+        .then(() => {
+          gwApp.close();
+          backendApp.close();
+          customBackendCalled.should.be.true;
+        });
     });
   });
 });
