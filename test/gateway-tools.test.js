@@ -1,7 +1,6 @@
 const chai = require('chai');
 const should = chai.should();
-const createGatewayConfig = require('../gateway-tools/create-gateway-config');
-const createGateway = require('../gateway-tools/create-gateway');
+const {createGateway, createGatewayConfig} = require('../gateway-tools');
 const request = require('supertest');
 
 describe('gateway-tools', function () {
