@@ -3,10 +3,22 @@ const Config = require('express-gateway/lib/config/config');
 const plugins = require('express-gateway/lib/plugins');
 const createGatewayConfig = require('./create-gateway-config');
 
-module.exports = function (customCfg, pluginPackage) {
+/**
+ * Configures and starts up an express-gateway instance
+ * @param {string} customCfg Well-formed gatewayConfig object (use createGatewayConfig())
+ * @param {string} pluginPackage Optional, path relative to the test file for the plugin manifest
+ * @param {Array} policiesToTest Optional, an array of policies to configure the gateway to test
+ */
+module.exports = function (customCfg, pluginPackage, policiesToTest = []) {
   if (!process.env.EG_DISABLE_CONFIG_WATCH) {
     process.env.EG_DISABLE_CONFIG_WATCH = 'true';
   }
+
+  policiesToTest.forEach((policyCfg) => {
+    let policyName = Object.keys(policyCfg)[0];
+    customCfg.policies.push(policyName);
+    customCfg.pipelines.basic.policies.unshift(policyCfg);
+  });
 
   let config = new Config();
   config.gatewayConfig = customCfg || createGatewayConfig();

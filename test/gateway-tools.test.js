@@ -65,11 +65,11 @@ describe('gateway-tools', function () {
       let gwConfig = createGatewayConfig();
       let gwApp;
 
-      // TODO: Figure out better way to configure a policy under test, or leave it up to the plugin dev
-      gwConfig.policies.push('test-policy');
-      gwConfig.pipelines.basic.policies.unshift({'test-policy': []});
+      let policiesToTest = [
+        { 'test-policy': []}
+      ];
 
-      return createGateway(gwConfig, './fixtures/test-plugin/manifest.js')
+      return createGateway(gwConfig, './fixtures/test-plugin/manifest.js', policiesToTest)
         .then((gw) => {
           gwApp = gw.app;
           return request(gwApp)
