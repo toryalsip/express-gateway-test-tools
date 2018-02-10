@@ -64,22 +64,12 @@ describe('gateway-tools', function () {
     it('should create a running gateway that can send requests through a custom plugin', function () {
       let gwConfig = createGatewayConfig();
       let gwApp;
-      let backendApp;
-
-      let handler = (req, res) => {
-        res.sendStatus(200);
-      };
 
       // TODO: Figure out better way to configure a policy under test, or leave it up to the plugin dev
       gwConfig.policies.push('test-policy');
       gwConfig.pipelines.basic.policies.unshift({'test-policy': []});
 
-      return getBackendServer(0, handler)
-        .then((backend) => {
-          backendApp = backend.app;
-          gwConfig.serviceEndpoints.backend.url = `http://localhost:${backend.port}`;
-          return createGateway(gwConfig, './fixtures/test-plugin/manifest.js');
-        })
+      return createGateway(gwConfig, './fixtures/test-plugin/manifest.js')
         .then((gw) => {
           gwApp = gw.app;
           return request(gwApp)
@@ -90,7 +80,6 @@ describe('gateway-tools', function () {
         })
         .then(() => {
           gwApp.close();
-          backendApp.close();
         });
     });
   });
