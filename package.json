@@ -16,11 +16,9 @@
     "url": "https://github.com/jbalsip/express-gateway-test-tools/issues"
   },
   "homepage": "https://github.com/jbalsip/express-gateway-test-tools#readme",
-  "dependencies": {
-    "express-gateway": "1.7.2"
-  },
   "devDependencies": {
     "chai": "^4.1.2",
+    "express-gateway": "1.7.2",
     "mocha": "^5.0.0",
     "supertest": "^3.0.0"
   }
