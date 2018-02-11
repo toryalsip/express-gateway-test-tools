@@ -1,26 +1,26 @@
 const {findOpenPortNumbers, getBackendServer} = require('../server-tools');
 const chai = require('chai');
-const should = chai.should();
+const expect = chai.expect;
 const request = require('supertest');
 
-let backend = undefined;
+let backend;
 
 describe('server-tools', function () {
   describe('findOpenPortNumbers()', function () {
     it('should return a promise that resolves to an array of available ports', function () {
       return findOpenPortNumbers(3)
         .then((ports) => {
-          ports.should.have.lengthOf(3);
-          ports.should.not.include(0);
+          expect(ports).to.have.lengthOf(3);
+          expect(ports).to.not.include(0);
         });
     });
   });
 
   describe('getBackendServer()', function () {
     before(function () {
-      let handler = function (req, res, next) {
+      const handler = function (req, res, next) {
         res.sendStatus(200);
-      }
+      };
       return getBackendServer(0, handler)
         .then((server) => {
           backend = server.app;

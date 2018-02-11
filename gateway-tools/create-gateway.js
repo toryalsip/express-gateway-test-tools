@@ -15,12 +15,12 @@ module.exports = function (customCfg, pluginPackage, policiesToTest = []) {
   }
 
   policiesToTest.forEach((policyCfg) => {
-    let policyName = Object.keys(policyCfg)[0];
+    const policyName = Object.keys(policyCfg)[0];
     customCfg.policies.push(policyName);
     customCfg.pipelines.basic.policies.unshift(policyCfg);
   });
 
-  let config = new Config();
+  const config = new Config();
   config.gatewayConfig = customCfg || createGatewayConfig();
 
   let loadedPlugins = { };
@@ -32,11 +32,11 @@ module.exports = function (customCfg, pluginPackage, policiesToTest = []) {
         }
       }
     };
-    loadedPlugins = plugins.load({config})
+    loadedPlugins = plugins.load({config});
   }
 
   return gateway({
     plugins: loadedPlugins,
     config
   });
-}
+};

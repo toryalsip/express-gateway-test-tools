@@ -1,20 +1,23 @@
 const chai = require('chai');
-const should = chai.should();
-const {createGateway, createGatewayConfig} = require('../gateway-tools');
+const expect = chai.expect;
+const {
+  createGateway,
+  createGatewayConfig
+} = require('../gateway-tools');
 const getBackendServer = require('../server-tools').getBackendServer;
 const request = require('supertest');
 
 describe('gateway-tools', function () {
   describe('createGatewayConfig()', function () {
     it('should create a basic configuration object', function () {
-      let gwConfig = createGatewayConfig();
+      const gwConfig = createGatewayConfig();
 
       // Only going to check a few key properties but not the object in
       // its entirety.
-      gwConfig.should.have.property('http').with.property('port').equal(0);
-      gwConfig.apiEndpoints.api.paths.should.equal('/ip');
-      gwConfig.serviceEndpoints.backend.url.should.equal('http://httpbin.org');
-      gwConfig.should.have.property('policies').with.lengthOf(1);
+      expect(gwConfig).to.have.property('http').with.property('port').equal(0);
+      expect(gwConfig.apiEndpoints.api.paths).to.equal('/ip');
+      expect(gwConfig.serviceEndpoints.backend.url).to.equal('http://httpbin.org');
+      expect(gwConfig).to.have.property('policies').with.lengthOf(1);
     });
   });
 
@@ -31,13 +34,13 @@ describe('gateway-tools', function () {
     });
 
     it('should create a running gateway with custom config and backend that can respond to requests', function () {
-      let gwConfig = createGatewayConfig();
+      const gwConfig = createGatewayConfig();
       let gwApp;
       let backendApp;
 
       let customBackendCalled = false;
 
-      let handler = (req, res) => {
+      const handler = (req, res) => {
         customBackendCalled = true;
         res.sendStatus(200);
       };
@@ -46,28 +49,28 @@ describe('gateway-tools', function () {
         .then((backend) => {
           backendApp = backend.app;
           gwConfig.serviceEndpoints.backend.url = `http://localhost:${backend.port}`;
-          return createGateway(gwConfig)
+          return createGateway(gwConfig);
         })
         .then((gw) => {
           gwApp = gw.app;
           return request(gwApp)
             .get('/ip')
-            .expect(200)
+            .expect(200);
         })
         .then(() => {
           gwApp.close();
           backendApp.close();
-          customBackendCalled.should.be.true;
+          expect(customBackendCalled).to.equal(true);
         });
     });
 
     it('should create a running gateway that can send requests through a custom plugin', function () {
-      let gwConfig = createGatewayConfig();
+      const gwConfig = createGatewayConfig();
       let gwApp;
 
-      let policiesToTest = [
-        { 'test-policy': []}
-      ];
+      const policiesToTest = [{
+        'test-policy': []
+      }];
 
       return createGateway(gwConfig, './fixtures/test-plugin/manifest.js', policiesToTest)
         .then((gw) => {
@@ -75,8 +78,8 @@ describe('gateway-tools', function () {
           return request(gwApp)
             .get('/ip')
             .expect(200)
-            .expect((res) => 
-              res.header.should.have.property('x-test-policy'));
+            .then((res) =>
+              expect(res.headers).to.have.property('x-test-policy'));
         })
         .then(() => {
           gwApp.close();

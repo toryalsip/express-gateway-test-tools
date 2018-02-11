@@ -1,6 +1,6 @@
 const express = require('express');
 
-module.exports = function(port, handler) {
+module.exports = function (port, handler) {
   const app = express();
 
   app.use(handler);

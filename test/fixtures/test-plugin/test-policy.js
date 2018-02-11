@@ -7,6 +7,6 @@ module.exports = {
       logger.debug('req received by test-policy');
       res.setHeader('x-test-policy', 'abc123');
       next();
-    }
+    };
   }
 };
