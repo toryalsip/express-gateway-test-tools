@@ -37,6 +37,9 @@ describe('exmaple test', function () {
 
 ```
 
+## Setting up tests to run
+Make certain that at a minimum set `EG_DISABLE_CONFIG_WATCH=true` when running your tests, otherwise the gateway will have issues attempting to load.
+
 ## A note on dependencies
 
 The testing tools have no specific dependencies defined, so as to allow a plugin developer to test against the version of Express Gateway that they're actually using.  Thus it is assumed that some version of Express Gateway is installed by the app that is consuming this package.

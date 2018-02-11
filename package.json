@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "mocha test --recursive"
+    "test": "cross-env EG_DISABLE_CONFIG_WATCH=true mocha test --recursive"
   },
   "lint-staged": {
     "*.js": [
@@ -30,6 +30,7 @@
   "homepage": "https://github.com/jbalsip/express-gateway-test-tools#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "cross-env": "^5.1.3",
     "eslint": "^4.17.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",

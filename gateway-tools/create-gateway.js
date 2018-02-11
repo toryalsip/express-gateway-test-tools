@@ -10,10 +10,6 @@ const createGatewayConfig = require('./create-gateway-config');
  * @param {Array} policiesToTest Optional, an array of policies to configure the gateway to test
  */
 module.exports = function (customCfg, pluginPackage, policiesToTest = []) {
-  if (!process.env.EG_DISABLE_CONFIG_WATCH) {
-    process.env.EG_DISABLE_CONFIG_WATCH = 'true';
-  }
-
   policiesToTest.forEach((policyCfg) => {
     const policyName = Object.keys(policyCfg)[0];
     customCfg.policies.push(policyName);
