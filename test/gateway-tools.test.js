@@ -2,9 +2,9 @@ const chai = require('chai');
 const expect = chai.expect;
 const {
   createGateway,
-  createGatewayConfig
-} = require('../gateway-tools');
-const getBackendServer = require('../server-tools').getBackendServer;
+  createGatewayConfig,
+  getBackendServer
+} = require('../index');
 const request = require('supertest');
 
 describe('gateway-tools', function () {

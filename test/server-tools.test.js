@@ -1,4 +1,4 @@
-const { getBackendServer } = require('../server-tools');
+const { getBackendServer } = require('../index');
 const request = require('supertest');
 
 let backend;
