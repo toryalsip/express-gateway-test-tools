@@ -5,11 +5,11 @@ The purpose of this package is to provide a set of tools to make it easier to wr
 ## Usage Examples
 
 ```JavaScript
-const gwTools = require('express-gateway-test-tools').gatewayTools;
+const { createGateway, createGatewayConfig } = require('express-gateway-test-tools');
 
 describe('exmaple test', function () {
   it('with custom policy', function () {
-    let gwConfig = gwTools.createGatewayConfig();
+    let gwConfig = createGatewayConfig();
     let gwApp;
 
     // Setup the actionParams you want to pass into the policies you'll be testing
@@ -21,7 +21,7 @@ describe('exmaple test', function () {
     ];
 
     // Path to the manifest file needs to be relative to the test file
-    return gwTools.createGateway(gwConfig, '../manifest.js', policiesToTest)
+    return createGateway(gwConfig, '../manifest.js', policiesToTest)
       .then((gw) => {
         gwApp = gw.app;
         return request(gwApp)
