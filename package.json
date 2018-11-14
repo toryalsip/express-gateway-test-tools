@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jbalsip/express-gateway-test-tools.git"
+    "url": "git+https://github.com/matcha440/express-gateway-test-tools.git"
   },
   "author": "Jason Alsip",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jbalsip/express-gateway-test-tools/issues"
+    "url": "https://github.com/matcha440/express-gateway-test-tools/issues"
   },
-  "homepage": "https://github.com/jbalsip/express-gateway-test-tools#readme",
+  "homepage": "https://github.com/matcha440/express-gateway-test-tools#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "cross-env": "^5.1.3",
