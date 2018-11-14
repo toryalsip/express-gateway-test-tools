@@ -27,3 +27,4 @@ steps:
   inputs:
     testRunner: JUnit
     testResultsFiles: ./test-results.xml
+    buildPlatform: 'Node.js $(node_version)'
