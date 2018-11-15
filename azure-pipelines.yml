@@ -21,10 +21,10 @@ steps:
 - script: |
     npm install
     npm test -- --reporter mocha-junit-reporter \
-      --reporter-options mochaFile=./test-results$(node_version).xml
+      --reporter-options mochaFile=./test-results-$(node_version).xml
   displayName: 'npm install and test'
 
 - task: PublishTestResults@2
   inputs:
     testRunner: JUnit
-    testResultsFiles: ./test-results$(node_version).xml
+    testResultsFiles: ./test-results-$(node_version).xml
