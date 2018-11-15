@@ -10,4 +10,4 @@ steps:
 - task: Npm@1
   inputs:
     command: publish
-    publishEndpoint: jbalsip@npm
+    publishEndpoint: 'jbalsip'
