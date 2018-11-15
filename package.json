@@ -1,6 +1,6 @@
 {
-  "name": "eg-test-tools",
-  "version": "0.2.1",
+  "name": "express-gateway-test-tools",
+  "version": "0.2.2",
   "description": "Tools for assisting with testing and validating custom plugin code",
   "keywords": [
     "express-gateway",
