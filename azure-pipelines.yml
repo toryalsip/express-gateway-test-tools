@@ -18,11 +18,14 @@ steps:
     versionSpec: '$(node_version)'
   displayName: 'Install Node.js $(node_version)'
 
+- task: Npm@1
+  inputs:
+    command: install
+
 - script: |
-    npm install
     npm test -- --reporter mocha-junit-reporter \
       --reporter-options mochaFile=./test-results-$(node_version).xml
-  displayName: 'npm install and test'
+  displayName: 'Run Unit Tests'
 
 - task: PublishTestResults@2
   inputs:
