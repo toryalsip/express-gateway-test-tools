@@ -31,3 +31,7 @@ steps:
   inputs:
     testRunner: JUnit
     testResultsFiles: ./test-results-$(node_version).xml
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)'
