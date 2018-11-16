@@ -5,31 +5,29 @@
 
 pool:
   vmImage: 'Ubuntu 16.04'
-strategy:
-  matrix:
-    node_8_x:
-      node_version: 8.x
-    node_10_x:
-      node_version: 10.x
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '$(node_version)'
-  displayName: 'Install Node.js $(node_version)'
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
 - task: Npm@1
   inputs:
     command: install
 
 - script: |
-    npm test -- --reporter mocha-junit-reporter \
-      --reporter-options mochaFile=./test-results-$(node_version).xml
+    npm test -- --reporter mocha-junit-reporter
   displayName: 'Run Unit Tests'
 
 - task: PublishTestResults@2
   inputs:
     testRunner: JUnit
-    testResultsFiles: ./test-results-$(node_version).xml
+    testResultsFiles: ./test-results.xml
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
 
 - task: PublishBuildArtifacts@1
