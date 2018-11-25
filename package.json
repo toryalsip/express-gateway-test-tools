@@ -10,7 +10,8 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "cross-env EG_DISABLE_CONFIG_WATCH=true mocha test --recursive"
+    "test": "cross-env EG_DISABLE_CONFIG_WATCH=true mocha test --recursive",
+    "test:ci": "npm test -- --reporter mocha-junit-reporter"
   },
   "lint-staged": {
     "*.js": [

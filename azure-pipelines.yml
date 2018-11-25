@@ -16,8 +16,7 @@ steps:
   inputs:
     command: install
 
-- script: |
-    npm test -- --reporter mocha-junit-reporter
+- script: npm run test:ci
   displayName: 'Run Unit Tests'
 
 - task: PublishTestResults@2
