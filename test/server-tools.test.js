@@ -5,7 +5,7 @@ let backend;
 
 describe('server-tools', function () {
   describe('getBackendServer()', function () {
-    before(function () {
+    beforeAll(function () {
       const handler = function (req, res, next) {
         res.sendStatus(200);
       };
@@ -15,7 +15,7 @@ describe('server-tools', function () {
         });
     });
 
-    after(function () {
+    afterAll(function () {
       if (backend) {
         backend.close();
       }

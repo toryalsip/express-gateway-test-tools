@@ -23,6 +23,7 @@ steps:
   inputs:
     testRunner: JUnit
     testResultsFiles: ./test-results.xml
+  condition: always()
 
 - task: ArchiveFiles@2
   inputs:

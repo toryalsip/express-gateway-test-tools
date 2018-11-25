@@ -10,8 +10,8 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "cross-env EG_DISABLE_CONFIG_WATCH=true mocha test --recursive",
-    "test:ci": "npm test -- --reporter mocha-junit-reporter"
+    "test": "cross-env EG_DISABLE_CONFIG_WATCH=true jest",
+    "test:ci": "npm test -- --ci --reporters=default --reporters=jest-junit"
   },
   "lint-staged": {
     "*.js": [
@@ -30,19 +30,19 @@
   },
   "homepage": "https://github.com/matcha440/express-gateway-test-tools#readme",
   "devDependencies": {
-    "chai": "^4.1.2",
     "cross-env": "^5.1.3",
     "eslint": "^4.17.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^22.0.0",
     "eslint-plugin-markdown": "^1.0.0-beta.6",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "express-gateway": "^1.13.0",
+    "jest": "^23.6.0",
+    "jest-junit": "^5.2.0",
     "lint-staged": "^6.1.0",
-    "mocha": "^5.0.0",
-    "mocha-junit-reporter": "^1.18.0",
     "supertest": "^3.0.0"
   }
 }

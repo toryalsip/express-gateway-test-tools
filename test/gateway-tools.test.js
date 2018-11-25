@@ -1,5 +1,3 @@
-const chai = require('chai');
-const expect = chai.expect;
 const {
   createGateway,
   createGatewayConfig,
@@ -14,10 +12,10 @@ describe('gateway-tools', function () {
 
       // Only going to check a few key properties but not the object in
       // its entirety.
-      expect(gwConfig).to.have.property('http').with.property('port').equal(0);
-      expect(gwConfig.apiEndpoints.api.paths).to.equal('/ip');
-      expect(gwConfig.serviceEndpoints.backend.url).to.equal('http://httpbin.org');
-      expect(gwConfig).to.have.property('policies').with.lengthOf(1);
+      expect(gwConfig.http.port).toBe(0);
+      expect(gwConfig.apiEndpoints.api.paths).toBe('/ip');
+      expect(gwConfig.serviceEndpoints.backend.url).toBe('http://httpbin.org');
+      expect(gwConfig.policies.length).toBe(1);
     });
   });
 
@@ -60,7 +58,7 @@ describe('gateway-tools', function () {
         .then(() => {
           gwApp.close();
           backendApp.close();
-          expect(customBackendCalled).to.equal(true);
+          expect(customBackendCalled).toBe(true);
         });
     });
 
@@ -79,7 +77,7 @@ describe('gateway-tools', function () {
             .get('/ip')
             .expect(200)
             .then((res) =>
-              expect(res.headers).to.have.property('x-test-policy'));
+              expect(res.headers).toHaveProperty('x-test-policy'));
         })
         .then(() => {
           gwApp.close();
