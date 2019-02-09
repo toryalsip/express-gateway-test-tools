@@ -28,7 +28,7 @@ module.exports = function (customCfg, pluginPackage, policiesToTest = []) {
         }
       }
     };
-    loadedPlugins = plugins.load({config});
+    loadedPlugins = plugins.load({ config });
   }
 
   return gateway({
