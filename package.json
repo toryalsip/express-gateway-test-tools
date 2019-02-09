@@ -30,19 +30,19 @@
   },
   "homepage": "https://github.com/matcha440/express-gateway-test-tools#readme",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "cross-env": "^5.1.3",
-    "eslint": "^4.17.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-markdown": "^1.0.0-beta.6",
-    "eslint-plugin-node": "^6.0.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "express-gateway": "^1.13.0",
-    "lint-staged": "^6.1.0",
-    "mocha": "^5.0.0",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.13.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "express-gateway": "^1.15.0",
+    "lint-staged": "^8.1.3",
+    "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.4.2"
   }
 }
