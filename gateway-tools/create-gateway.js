@@ -9,7 +9,7 @@ const createGatewayConfig = require('./create-gateway-config');
  * @param {string} pluginPackage Optional, path relative to the test file for the plugin manifest
  * @param {Array} policiesToTest Optional, an array of policies to configure the gateway to test
  */
-module.exports = function (customCfg, pluginPackage, policiesToTest = []) {
+module.exports = function (customCfg, pluginPackage, policiesToTest = [], pluginParameters = {}) {
   policiesToTest.forEach((policyCfg) => {
     const policyName = Object.keys(policyCfg)[0];
     customCfg.policies.push(policyName);
@@ -28,6 +28,9 @@ module.exports = function (customCfg, pluginPackage, policiesToTest = []) {
         }
       }
     };
+    Object.keys(pluginParameters).forEach((param) => {
+      config.systemConfig.plugins['custom-plugin'][param] = pluginParameters[param];
+    });
     loadedPlugins = plugins.load({ config });
   }
 
