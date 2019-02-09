@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/matcha440/express-gateway-test-tools#readme",
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "cross-env": "^5.1.3",
     "eslint": "^4.17.0",
     "eslint-config-standard": "^11.0.0-beta.0",
