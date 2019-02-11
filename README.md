@@ -7,7 +7,7 @@ The purpose of this package is to provide a set of tools to make it easier to wr
 ```JavaScript
 const { createGateway, createGatewayConfig } = require('express-gateway-test-tools');
 
-describe('exmaple test', function () {
+describe('example test', function () {
   it('with custom policy', function () {
     let gwConfig = createGatewayConfig();
     let gwApp;
@@ -36,6 +36,17 @@ describe('exmaple test', function () {
 });
 
 ```
+### Plugins with parameters
+To set custom parameters for a plugin, define them like in this example.
+```JavaScript
+const pluginParams = {
+  param1: 'foo',
+  param2: 123
+};
+
+createGateway(gwConfig, '../manifest.js', policiesToTest, pluginParams);
+```
+
 
 ## Setting up tests to run
 Make certain that at a minimum set `EG_DISABLE_CONFIG_WATCH=true` when running your tests, otherwise the gateway will have issues attempting to load.

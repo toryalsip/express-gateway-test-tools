@@ -72,7 +72,11 @@ describe('gateway-tools', function () {
         'test-policy': []
       }];
 
-      return createGateway(gwConfig, './fixtures/test-plugin/manifest.js', policiesToTest)
+      const pluginParameters = {
+        param1: 'test'
+      };
+
+      return createGateway(gwConfig, './fixtures/test-plugin/manifest.js', policiesToTest, pluginParameters)
         .then((gw) => {
           gwApp = gw.app;
           return request(gwApp)
