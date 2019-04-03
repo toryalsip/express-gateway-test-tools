@@ -6,6 +6,7 @@ The purpose of this package is to provide a set of tools to make it easier to wr
 
 ```JavaScript
 const { createGateway, createGatewayConfig } = require('express-gateway-test-tools');
+const request = require('supertest');
 
 describe('example test', function () {
   it('with custom policy', function () {
@@ -14,10 +15,10 @@ describe('example test', function () {
 
     // Setup the actionParams you want to pass into the policies you'll be testing
     let policiesToTest = [
-      { 'myPolicy': [
+      { 'myPolicy': {
         param1: 'foo',
         param2: 'bar'
-      ]}
+      }}
     ];
 
     // Path to the manifest file needs to be relative to the test file
