@@ -11,7 +11,7 @@ module.exports = function () {
     },
     serviceEndpoints: {
       backend: {
-        url: `http://httpbin.org`
+        url: 'http://httpbin.org'
       }
     },
     policies: ['proxy'],
